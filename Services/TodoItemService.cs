@@ -24,9 +24,10 @@ public class TodoItemService : ITodoItemService
     var db = client.GetDatabase(todoDbSettings.Value.DatabaseName);
     todoItemCollection = db.GetCollection<TodoItem>(todoDbSettings.Value.CollectionName);
   }
-  public Task<TodoItem> CreateTodoItem(TodoItem todoItem)
+  public async Task<TodoItem> CreateTodoItem(TodoItem newTodoItem)
   {
-    throw new NotImplementedException();
+    await todoItemCollection.InsertOneAsync(newTodoItem);
+    return newTodoItem;
   }
 
   public async Task<IEnumerable<TodoItem>> GetAllTodoItems()
