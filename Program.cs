@@ -15,7 +15,7 @@ app.MapGet("/todo-items", async (ITodoItemService todoItemService) => {
   return Results.Ok(todos);
 });
 
-app.MapGet("/todo-items/{id}", async (string id, TodoItemService todoItemService) => {
+app.MapGet("/todo-items/{id}", async (string id, ITodoItemService todoItemService) => {
   var todoItem = await todoItemService.GetTodoItemById(id);
   return Results.Ok(todoItem);
 });
