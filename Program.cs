@@ -1,6 +1,8 @@
 using Services;
+using Settings;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<TodoDbSettings>(builder.Configuration.GetSection("TodoDb"));
 builder.Services.AddSingleton<ITodoItemService, TodoItemService>();
 
 
