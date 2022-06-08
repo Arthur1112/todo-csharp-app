@@ -5,9 +5,13 @@ using Settings;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<TodoDbSettings>(builder.Configuration.GetSection("TodoDb"));
 builder.Services.AddSingleton<ITodoItemService, TodoItemService>();
-
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.MapGet("/todo-items", async (ITodoItemService todoItemService) => {
   var todos = await todoItemService.GetAllTodoItems();
