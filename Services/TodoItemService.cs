@@ -29,9 +29,10 @@ public class TodoItemService : ITodoItemService
     throw new NotImplementedException();
   }
 
-  public Task<IEnumerable<TodoItem>> GetAllTodoItems()
+  public async Task<IEnumerable<TodoItem>> GetAllTodoItems()
   {
-    throw new NotImplementedException();
+    var res = await todoItemCollection.FindAsync(x => true);
+    return res.ToList();
   }
 
   public Task<TodoItem> GetTodoItemById(string id)
